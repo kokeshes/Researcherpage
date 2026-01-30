@@ -181,4 +181,9 @@ a{color:inherit}
   opacity: .6;
 }
 
+@media (max-width: 720px){
+  #detail .label{ font-size: 1.05rem; }
+  #detail .small{ font-size: .95rem; line-height: 1.55; }
+  #closeDetail{ width: 100%; }
+}
 
