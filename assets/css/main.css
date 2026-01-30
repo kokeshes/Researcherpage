@@ -269,4 +269,9 @@ a.node{
   opacity: .10;
   mix-blend-mode: screen;
   background-image:
-    radial-gradient(circle at 12% 18%
+    radial-gradient(circle at 12% 18%);
+                    }
+
+/* Hidden link: default hidden, unlock shows */
+#hidden-link.is-hidden{ display:none; }
+#hidden-link.is-unlocked{ display:block; }
