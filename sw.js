@@ -1,4 +1,4 @@
-const CACHE = "layer-cache-v5"; 
+const CACHE = "layer-cache-v6"; 
 const ASSETS = [
   "./",
   "./index.html",
