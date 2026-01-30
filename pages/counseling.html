@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#071014" />
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="icon" href="../assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <title>Counseling Log</title>
+</head>
+<body>
+  <div class="bg" style="background-image:url('../assets/img/bg-counsel.png')"></div>
+  <canvas id="noise"></canvas>
+  <div class="scanlines"></div>
+  <main class="shell">
+    <section class="panel" role="region" aria-label="Counseling Log">
+      <header class="topbar">
+        <div class="brand">
+          <div class="title">SERIAL // RESEARCH LAYER</div>
+          <div class="name" data-glitch="Counseling Log">Counseling Log</div>
+        </div>
+        <a class="pill" href="../index.html">← INDEX</a>
+      </header>
+      <div class="content">
+<div id="gate" class="card">
+  <div class="kicker">LOCK</div>
+  <div class="label" data-glitch="PASSWORD REQUIRED">PASSWORD REQUIRED</div>
+  <div class="small" style="margin-top:10px">
+    これは<strong>クライアント側のみ</strong>の簡易ゲートです（強い秘匿ではありません）。
+    端末内にログを保存します（localStorage）。
+  </div>
+  <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap">
+    <input id="pass" class="input" style="max-width:280px" placeholder="Password" autocomplete="off" />
+    <button id="enter" class="btn">ENTER</button>
+  </div>
+</div>
+<div id="content" style="display:none">
+  <div class="small" style="margin-bottom:14px">1行でもいい。観測して、残す。端末内ログ。</div>
+  <div class="card">
+    <div class="kicker">NEW ENTRY</div>
+    <textarea id="logText" class="input" rows="5" placeholder="What happened / what was observed? (stored locally)"></textarea>
+    <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
+      <button class="btn" id="add">ADD</button>
+      <button class="btn" id="export">EXPORT JSON</button>
+      <button class="btn" id="wipe" style="border-color:rgba(255,120,170,.35)">WIPE</button>
+    </div>
+  </div>
+  <div class="hr"></div>
+  <div class="kicker">LOGS</div>
+  <div id="logList" style="display:grid; gap:12px; margin-top:10px"></div>
+</div>
+</div>
+      <div class="footer">
+        <div>© <span id="y"></span> Tatemata Yuuji</div>
+        <div class="pill" id="sysclock"></div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="./counseling.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    const clock = document.getElementById("sysclock");
+    setInterval(()=>clock.textContent="SYS "+new Date().toISOString().replace("T"," ").slice(0,19)+"Z", 1000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#071014" />
+  <meta name="description" content="Research homepage (PWA) for Tatemata Yuuji. Serial Experiments Lain-inspired interface." />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <title>Tatemata Yuuji — Research Layer</title>
+</head>
+<body>
+  <div class="bg" style="background-image:url('assets/img/bg-index.png')"></div>
+  <canvas id="noise"></canvas>
+  <div class="scanlines"></div>
+
+  <main class="shell">
+    <section class="panel" role="region" aria-label="Tatemata Yuuji Research Layer">
+      <header class="topbar">
+        <div class="brand">
+          <div class="title">SERIAL // ENTRY POINT</div>
+          <div class="name" data-glitch="TATEMATA YUUJI">TATEMATA YUUJI</div>
+        </div>
+        <div class="pill" id="sysclock"></div>
+      </header>
+
+      <div class="content">
+        <div class="small" style="margin-bottom:14px">
+          Networked notes, epistemic maps, and a private layer.<br/>
+          <span style="opacity:.75">Tip: Sometimes the system listens to repeated <b>Tab</b>.</span>
+        </div>
+
+        <div class="grid">
+          <a class="node" href="pages/research-map.html">
+            <div class="glitch">01</div>
+            <div class="kicker">LINK</div>
+            <div class="label" data-glitch="RESEARCH MAP">RESEARCH MAP</div>
+            <div class="desc">テーマ間の接続図。クリックで短いノートを読めます。</div>
+          </a>
+
+          <a class="node" href="pages/counseling.html">
+            <div class="glitch">02</div>
+            <div class="kicker">LOCKED</div>
+            <div class="label" data-glitch="COUNSELING LOG">COUNSELING LOG</div>
+            <div class="desc">鍵付きの記録。PW: <span style="font-family:var(--mono)">Observe</span></div>
+          </a>
+
+          <a class="node" href="pages/bibliography.html">
+            <div class="glitch">03</div>
+            <div class="kicker">INDEX</div>
+            <div class="label" data-glitch="BIBLIOGRAPHY">BIBLIOGRAPHY</div>
+            <div class="desc">論文・資料リンク集。検索とタグ。</div>
+          </a>
+
+          <a class="node" href="pages/about.html">
+            <div class="glitch">04</div>
+            <div class="kicker">PROFILE</div>
+            <div class="label" data-glitch="ABOUT / INTERESTS">ABOUT / INTERESTS</div>
+            <div class="desc">来歴・趣味・関心領域。研究と制作の交点。</div>
+          </a>
+        </div>
+
+        <div class="hr"></div>
+
+        <a id="hidden-link" class="node" href="pages/hidden.html" style="display:none">
+          <div class="glitch">??</div>
+          <div class="kicker">DEEP</div>
+          <div class="label" data-glitch="HIDDEN LAYER">HIDDEN LAYER</div>
+          <div class="desc">観測される前の記述。内的宇宙の仮ログ。</div>
+        </a>
+
+        <div class="small" style="margin-top:12px; opacity:.7">
+          Optional assets (character candidates):
+          <span style="font-family:var(--mono)">/assets/img/char-01.png</span>,
+          <span style="font-family:var(--mono)">char-02.png</span>,
+          <span style="font-family:var(--mono)">char-03.png</span>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>© <span id="y"></span> Tatemata Yuuji</div>
+        <div class="pill">STATUS: ONLINE</div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/index.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    const clock = document.getElementById("sysclock");
+    setInterval(()=>clock.textContent = "SYS " + new Date().toISOString().replace("T"," ").slice(0,19) + "Z", 1000);
+  </script>
+</body>
+</html>

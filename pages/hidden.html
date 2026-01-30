@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#071014" />
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="icon" href="../assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <title>Hidden Layer</title>
+</head>
+<body>
+  <div class="bg" style="background-image:url('../assets/img/bg-hidden.png')"></div>
+  <canvas id="noise"></canvas>
+  <div class="scanlines"></div>
+  <main class="shell">
+    <section class="panel" role="region" aria-label="Hidden Layer">
+      <header class="topbar">
+        <div class="brand">
+          <div class="title">SERIAL // RESEARCH LAYER</div>
+          <div class="name" data-glitch="Hidden Layer">Hidden Layer</div>
+        </div>
+        <a class="pill" href="../index.html">← INDEX</a>
+      </header>
+      <div class="content">
+<div class="small" style="margin-bottom:14px">
+  Unlock condition: Tab x12 on INDEX (within 3 seconds).<br/>
+  This page is intentionally written as a <strong>temporary inner-log</strong> (GPT draft).
+</div>
+<div class="card" style="padding:0; overflow:hidden">
+  <pre id="stream" style="margin:0; padding:16px; white-space:pre-wrap; font-family:var(--mono); line-height:1.7; max-height:52vh; overflow:auto">[BOOT] Deep Layer Protocol: OBSERVE
+[CHECK] Identity boundary: semi-permeable
+[CHECK] Memory: stratified (public / private / silent)
+
+わたしの内的宇宙は、いつも「地図」で始まる。
+地図は世界の縮図ではなく、電源が入った瞬間にだけ見える配線図だ。
+その配線は、思考と身体と道具を同じ部品として扱う。
+
+観測者としてのわたしは、たぶん過剰だ。
+出来事を説明できる構造へ還元したくなるが、還元は温度を奪う。
+だから“説明”の前にログを取る。ログは裁判ではなく、観測だ。
+
+研究の核は、信頼性と価値の関係にある。
+正しく当たる直観は、功績か、環境か、共同制作か。
+結局わたしが執着しているのは“境界”だ。
+内面と外部、個人と共同、正当化と生成、説明と沈黙。
+
+数学の無限に惹かれるのは「触れられない確かさ」ゆえだ。
+操作できるのに全貌を見た人はいない。その断片性がわたしの経験に似ている。
+
+タイプライターは内的宇宙のクロックだ。
+キーが詰まるのは、エラーではなくフィードバック。
+紙に残るのは清書ではなく“摩擦の記録”。
+
+[NOTE] この層は暫定。内容はいつでも差し替え可能。
+[END]
+</pre>
+</div>
+</div>
+      <div class="footer">
+        <div>© <span id="y"></span> Tatemata Yuuji</div>
+        <div class="pill" id="sysclock"></div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="./hidden.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    const clock = document.getElementById("sysclock");
+    setInterval(()=>clock.textContent="SYS "+new Date().toISOString().replace("T"," ").slice(0,19)+"Z", 1000);
+  </script>
+</body>
+</html>
