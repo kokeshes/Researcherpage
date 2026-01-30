@@ -7,13 +7,13 @@ const canvas=document.getElementById("map");
 const ctx=canvas.getContext("2d");
 const nodes=[
   {id:"Exterity",x:0.18,y:0.30,r:18,tag:"meta-epistemology",text:"外部に開いた正当化/観測者効果/手の届かない確かさ。"},
-  {id:"Sosa",x:0.35,y:0.22,r:14,tag:"virtue epistemology",text:"Apt belief / animal-reflective knowledge / performance normativity。"},
+  {id:"Epistemology",x:0.35,y:0.22,r:14,tag:"virtue epistemology",text:"Apt belief / animal-reflective knowledge / performance normativity。"},
   {id:"Dual-Process",x:0.55,y:0.20,r:16,tag:"cognitive science",text:"System 1 / System 2、well-trained System 1 と信頼性・価値。"},
-  {id:"Set Theory",x:0.72,y:0.35,r:16,tag:"math foundations",text:"無限・基礎論。形式が身体に触れる瞬間。"},
+  {id:"Logic",x:0.72,y:0.35,r:16,tag:"math foundations",text:"意味と形式が身体に触れる瞬間。"},
   {id:"WXK-Check",x:0.62,y:0.55,r:15,tag:"logging/PWA",text:"自己記録と診断の儀式。内面の『エラーコード』を可視化する。"},
   {id:"Typewriter",x:0.38,y:0.58,r:15,tag:"external mind",text:"打鍵は思考のクロック。詰まりはフィードバック。"},
   {id:"Denim",x:0.20,y:0.62,r:14,tag:"aesthetics",text:"生活の摩耗が意味になる。物語を縫う。"},
-  {id:"Thunder",x:0.12,y:0.44,r:12,tag:"mythic frame",text:"他者の隠れた真実が露出する感覚。断片としての全貌。"},
+  {id:"Thunder",x:0.12,y:0.44,r:12,tag:"mythic frame",text:"Thunder"},
 ];
 const edges=[["Exterity","Sosa"],["Exterity","Dual-Process"],["Dual-Process","Set Theory"],["Set Theory","Typewriter"],["Typewriter","WXK-Check"],["WXK-Check","Denim"],["Thunder","Exterity"],["Thunder","Denim"],["Sosa","Set Theory"]];
 function resize(){
