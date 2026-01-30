@@ -7,18 +7,35 @@ enableGlitchPulse(document);
 const hiddenLink = document.getElementById("hidden-link");
 if(localStorage.getItem("layer_unlocked")==="1" && hiddenLink) hiddenLink.style.display="block";
 
-let tabCount=0, windowStart=0;
-addEventListener("keydown",(e)=>{
-  if(e.key!=="Tab") return;
-  const now=performance.now();
-  if(now-windowStart>3000){ windowStart=now; tabCount=0; }
-  tabCount++;
-  if(tabCount===6) toast("...signal detected");
-  if(tabCount===10) toast("...linking");
-  if(tabCount>=12){
-    localStorage.setItem("layer_unlocked","1");
-    if(hiddenLink) hiddenLink.style.display="block";
+// Easier unlock: Tab x6 then Enter (within 6 seconds)
+let tabCount = 0;
+let windowStart = 0;
+let primed = false;
+
+window.addEventListener("keydown", (e)=>{
+  const now = performance.now();
+
+  if(e.key === "Tab"){
+    if(now - windowStart > 6000){
+      windowStart = now;
+      tabCount = 0;
+      primed = false;
+    }
+    tabCount++;
+
+    if(tabCount === 3) toast("...signal detected");
+    if(tabCount === 6){
+      primed = true;
+      toast("PRIMED — press Enter");
+    }
+  }
+
+  if(e.key === "Enter" && primed){
+    localStorage.setItem("layer_unlocked", "1");
+    if(hiddenLink) hiddenLink.style.display = "block";
     toast("LAYER UNLOCKED");
-    tabCount=0; windowStart=now;
+    primed = false;
+    tabCount = 0;
+    windowStart = now;
   }
 });
