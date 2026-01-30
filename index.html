@@ -10,34 +10,124 @@
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <title>Tatemata Yuuji — Research Layer</title>
+
+  <!-- ✅ MORE NOISE (inline add-on) -->
+  <style>
+    /* overlay layers (do not block clicks) */
+    .vignette, .chromab, .filmgrain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9; /* below your character img z-index 10 */
+    }
+
+    /* vignette */
+    .vignette{
+      background: radial-gradient(circle at 50% 45%,
+        rgba(0,0,0,0) 55%,
+        rgba(0,0,0,.55) 100%);
+      opacity:.85;
+      mix-blend-mode: multiply;
+    }
+
+    /* subtle chromatic aberration pulse */
+    .chromab{
+      opacity:.22;
+      filter: blur(.2px);
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle at 40% 50%, rgba(158,247,255,.08), transparent 55%),
+        radial-gradient(circle at 60% 55%, rgba(255,122,217,.06), transparent 55%);
+      animation: chromaShift 2.8s infinite steps(2);
+    }
+    @keyframes chromaShift{
+      0%{ transform: translate(0,0); }
+      25%{ transform: translate(1px,0); }
+      50%{ transform: translate(-1px,1px); }
+      75%{ transform: translate(0,-1px); }
+      100%{ transform: translate(0,0); }
+    }
+
+    /* film grain (CSS) */
+    .filmgrain{
+      opacity:.16;
+      mix-blend-mode: overlay;
+      background-image:
+        repeating-radial-gradient(circle at 20% 30%,
+          rgba(255,255,255,.06) 0,
+          rgba(255,255,255,.06) 1px,
+          transparent 2px,
+          transparent 3px);
+      animation: grainJitter .55s steps(2) infinite;
+    }
+    @keyframes grainJitter{
+      0%{ transform: translate(0,0); }
+      20%{ transform: translate(-2px,1px); }
+      40%{ transform: translate(1px,-1px); }
+      60%{ transform: translate(-1px,-2px); }
+      80%{ transform: translate(2px,1px); }
+      100%{ transform: translate(0,0); }
+    }
+
+    /* optional: stronger scanlines if main.css is light */
+    .scanlines{
+      opacity: .40 !important;
+    }
+
+    /* micro flicker */
+    body{
+      animation: flicker 6.5s infinite;
+    }
+    @keyframes flicker{
+      0%,100%{ filter:none; }
+      47%{ filter:none; }
+      48%{ filter: contrast(1.08) saturate(1.05); }
+      49%{ filter:none; }
+      79%{ filter:none; }
+      80%{ filter: contrast(1.12) saturate(1.08); }
+      81%{ filter:none; }
+    }
+
+    /* hidden link: always start hidden (hard lock) */
+    #hidden-link{ display:none !important; }
+  </style>
 </head>
 <body>
   <div class="bg" style="background-image:url('assets/img/bg-index.png')"></div>
-<img
-  src="assets/img/char-01.png"
-  alt="character"
-  style="
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    width: 320px;
-    opacity: 0.25;
-    z-index: 10;
-  "
->
+
+  <!-- keep your character(s) -->
+  <img
+    src="assets/img/char-01.png"
+    alt="character"
+    style="
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      width: 320px;
+      opacity: 0.25;
+      z-index: 10;
+    "
+  />
 
   <img
-  src="assets/img/char-01.png"
-  alt="observer"
-  style="
-    position: fixed;
-    right: -60px;
-    bottom: -40px;
-    width: 360px;
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 2;
-  ">
+    src="assets/img/char-01.png"
+    alt="observer"
+    style="
+      position: fixed;
+      right: -60px;
+      bottom: -40px;
+      width: 360px;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 2;
+    "
+  />
+
+  <!-- ✅ MORE NOISE overlays -->
+  <div class="filmgrain"></div>
+  <div class="chromab"></div>
+  <div class="vignette"></div>
+
   <canvas id="noise"></canvas>
   <div class="scanlines"></div>
 
@@ -89,6 +179,7 @@
 
         <div class="hr"></div>
 
+        <!-- ✅ Hidden link stays hidden on every reload -->
         <a id="hidden-link" class="node" href="pages/hidden.html" style="display:none">
           <div class="glitch">??</div>
           <div class="kicker">DEEP</div>
@@ -97,7 +188,7 @@
         </a>
 
         <div class="small" style="margin-top:12px; opacity:.7">
-           MEMORANDUM Optional assets (character candidates):
+          MEMORANDUM Optional assets (character candidates):
           <span style="font-family:var(--mono)">/assets/img/char-01.png</span>,
           <span style="font-family:var(--mono)">char-02.png</span>,
           <span style="font-family:var(--mono)">char-03.png</span>
@@ -112,10 +203,46 @@
   </main>
 
   <script type="module" src="assets/js/index.js"></script>
+
   <script>
+    /* year + clock */
     document.getElementById("y").textContent = new Date().getFullYear();
     const clock = document.getElementById("sysclock");
-    setInterval(()=>clock.textContent = "SYS " + new Date().toISOString().replace("T"," ").slice(0,19) + "Z", 1000);
+    setInterval(()=>{
+      clock.textContent = "SYS " + new Date().toISOString().replace("T"," ").slice(0,19) + "Z";
+    }, 1000);
+
+    /* ✅ hard-hide secret section every load (even if something tries to show it) */
+    addEventListener("DOMContentLoaded", ()=>{
+      const hidden = document.getElementById("hidden-link");
+      if(hidden){
+        hidden.style.display = "none";
+        hidden.setAttribute("aria-hidden","true");
+      }
+    });
+
+    /* ✅ noise spikes on hover/click (no dependency on common.js) */
+    const grain = document.querySelector(".filmgrain");
+    function spikeNoise(ms=220, op=0.30){
+      if(!grain) return;
+      const prev = parseFloat(getComputedStyle(grain).opacity) || 0.16;
+      grain.style.opacity = String(op);
+      setTimeout(()=>grain.style.opacity = String(prev), ms);
+    }
+
+    document.addEventListener("pointerdown", ()=>spikeNoise(260, 0.36));
+    document.addEventListener("keydown", (e)=>{
+      // subtle spike on keystrokes (do not spam)
+      if(e.key.length === 1) spikeNoise(140, 0.26);
+    });
+
+    /* ✅ occasional micro-glitch (very light) */
+    setInterval(()=>{
+      if(Math.random() < 0.12){
+        document.body.style.transform = "translate(" + (Math.random()*2-1).toFixed(2) + "px," + (Math.random()*2-1).toFixed(2) + "px)";
+        setTimeout(()=>document.body.style.transform="none", 60);
+      }
+    }, 900);
   </script>
 </body>
 </html>
