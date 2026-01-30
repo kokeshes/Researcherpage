@@ -15,7 +15,16 @@ const nodes=[
   {id:"Denim",x:0.20,y:0.62,r:14,tag:"aesthetics",text:"生活の摩耗が意味になる。物語を縫う。"},
   {id:"Thunder",x:0.12,y:0.44,r:12,tag:"mythic frame",text:"Thunder"},
 ];
-const edges=[["Exterity","Sosa"],["Exterity","Dual-Process"],["Dual-Process","Set Theory"],["Set Theory","Typewriter"],["Typewriter","WXK-Check"],["WXK-Check","Denim"],["Thunder","Exterity"],["Thunder","Denim"],["Sosa","Set Theory"]];
+const edges = [
+  ["Exterity","Dual-Process"],
+  ["Dual-Process","Logic"],      // ★追加
+  ["Logic","Typewriter"],        // ★追加
+  ["Typewriter","WXK-Check"],
+  ["WXK-Check","Denim"],
+  ["Thunder","Exterity"],
+  ["Thunder","Denim"],
+];
+
 function resize(){
   canvas.width=canvas.clientWidth*devicePixelRatio;
   canvas.height=canvas.clientHeight*devicePixelRatio;
