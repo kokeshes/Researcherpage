@@ -76,3 +76,14 @@ a{color:inherit}
 .small{font-size:12px;color:rgba(216,244,255,.68);line-height:1.7}
 .card{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(0,0,0,.28)}
 .tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:4px 8px;border:1px solid rgba(216,244,255,.25);border-radius:999px;color:rgba(216,244,255,.72);margin-right:6px;margin-bottom:6px}
+/* === Lain-style character === */
+.lain-character{
+  position: fixed;
+  right: -60px;
+  bottom: -40px;
+  width: 380px;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 2;
+  filter: blur(0.3px);
+}
