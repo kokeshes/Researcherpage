@@ -15,12 +15,17 @@ if (localStorage.getItem("layer_unlocked") === "1" && hiddenLink) {
 }
 
 /**
- * ✅ Unlock key: F8
- * - OS/ブラウザの既定ショートカットと衝突しにくい
- * - Tab問題を回避
+ * ✅ Unlock key: Shift + L
+ * - OS / ブラウザと衝突しにくい
+ * - 片手操作
+ * - Lain 的（L）
  */
 window.addEventListener("keydown", (e) => {
-  if (e.key !== "F8") return;
+  const isUnlock =
+    e.shiftKey &&
+    (e.key === "L" || e.key === "l");
+
+  if (!isUnlock) return;
 
   e.preventDefault();
 
@@ -41,3 +46,4 @@ if (clock) {
   tick();
   setInterval(tick, 1000);
 }
+
