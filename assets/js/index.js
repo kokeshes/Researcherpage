@@ -14,14 +14,15 @@ if (localStorage.getItem("layer_unlocked") === "1" && hiddenLink) {
   toast("LAYER: AVAILABLE", 1200);
 }
 
-// ✅ 確実に動く解除方法：Ctrl + 0
-// （Tabは環境依存が強いので採用しない）
+/**
+ * ✅ Unlock key: F8
+ * - OS/ブラウザの既定ショートカットと衝突しにくい
+ * - Tab問題を回避
+ */
 window.addEventListener("keydown", (e) => {
-  const isCtrlO = e.ctrlKey && (e.key === "0" || e.key === "0");
+  if (e.key !== "F8") return;
 
-  if (!isCtrlO) return;
-
-  e.preventDefault(); // ブラウザ既定動作を止める
+  e.preventDefault();
 
   localStorage.setItem("layer_unlocked", "1");
   if (hiddenLink) hiddenLink.style.display = "block";
@@ -34,7 +35,8 @@ const clock = document.getElementById("sysclock");
 if (clock) {
   const tick = () => {
     const d = new Date();
-    clock.textContent = "SYS " + d.toISOString().replace("T", " ").slice(0, 19) + "Z";
+    clock.textContent =
+      "SYS " + d.toISOString().replace("T", " ").slice(0, 19) + "Z";
   };
   tick();
   setInterval(tick, 1000);
