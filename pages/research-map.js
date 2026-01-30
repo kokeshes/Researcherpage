@@ -34,12 +34,18 @@ function draw(){
   ctx.globalAlpha=1;
 
   ctx.lineWidth=1;
-  for(const [a,b] of edges){
-    const na=nodes.find(n=>n.id===a), nb=nodes.find(n=>n.id===b);
-    const pa=pos(na), pb=pos(nb);
-    ctx.strokeStyle="rgba(216,244,255,.28)";
-    ctx.beginPath(); ctx.moveTo(pa.x,pa.y); ctx.lineTo(pb.x,pb.y); ctx.stroke();
-  }
+ for (const [a, b] of edges) {
+  const na = nodes.find(n => n.id === a);
+  const nb = nodes.find(n => n.id === b);
+  if (!na || !nb) continue; // ★これが重要（存在しないIDはスキップ）
+
+  const pa = pos(na), pb = pos(nb);
+  ctx.strokeStyle = "rgba(216,244,255,.28)";
+  ctx.beginPath();
+  ctx.moveTo(pa.x, pa.y);
+  ctx.lineTo(pb.x, pb.y);
+  ctx.stroke();
+}
 
   for(const n of nodes){
     const p=pos(n), isHover=(hover && hover.id===n.id);
