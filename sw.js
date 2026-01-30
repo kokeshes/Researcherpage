@@ -1,4 +1,4 @@
-const CACHE = "layer-cache-v3"; // ← ここを更新のたびに v4, v5... と上げれば確実
+const CACHE = "layer-cache-v4"; 
 const ASSETS = [
   "./",
   "./index.html",
