@@ -187,3 +187,34 @@ a{color:inherit}
   #closeDetail{ width: 100%; }
 }
 
+/* === Fix: mobile taps not working (overlays stealing touches) === */
+.bg,
+.scanlines,
+#noise,
+#hood-apparition,
+.hidden-figure,
+.hidden-figure__veil,
+.hood-veil{
+  pointer-events: none !important;
+}
+
+/* 念のため：UI側はタップを受け取れるように */
+.shell,
+.panel,
+.content,
+a.node,
+#hidden-link{
+  pointer-events: auto;
+}
+
+/* タップ最適化（iOS/Android） */
+a.node{
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* UIを必ずオーバーレイより前面に */
+.shell{ position: relative; z-index: 10; }
+.panel{ position: relative; z-index: 11; }
+
+
