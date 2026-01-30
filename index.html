@@ -127,7 +127,8 @@
   <div class="filmgrain"></div>
   <div class="chromab"></div>
   <div class="vignette"></div>
-
+<div class="filmgrain"></div>
+<div class="filmdust"></div>
   <canvas id="noise"></canvas>
   <div class="scanlines"></div>
 
@@ -244,5 +245,54 @@
       }
     }, 900);
   </script>
+  <script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+  const clock = document.getElementById("sysclock");
+  setInterval(()=>clock.textContent = "SYS " + new Date().toISOString().replace("T"," ").slice(0,19) + "Z", 1000);
+
+  // =========================================================
+  // Hidden layer (always hidden on load, unlock by typing Observe)
+  // =========================================================
+  const hiddenLink = document.getElementById("hidden-link");
+
+  // 毎回隠す
+  if(hiddenLink){
+    hiddenLink.classList.add("is-hidden");
+    hiddenLink.classList.remove("is-unlocked");
+    hiddenLink.setAttribute("aria-hidden","true");
+  }
+
+  // ノイズ増幅（短時間）
+  function spikeNoise(ms=260){
+    document.documentElement.classList.add("noise-spike");
+    setTimeout(()=>document.documentElement.classList.remove("noise-spike"), ms);
+  }
+
+  // Observe入力で解除（保存しない＝リロードで必ず戻る）
+  let buf = "";
+  document.addEventListener("keydown", (e)=>{
+    if(e.key.length !== 1) return;
+    buf = (buf + e.key).slice(-16);
+
+    // キー入力で微ザラつき
+    if(e.key.trim()) spikeNoise(90);
+
+    if(buf.toLowerCase().endsWith("observe")){
+      if(!hiddenLink) return;
+      hiddenLink.classList.remove("is-hidden");
+      hiddenLink.classList.add("is-unlocked");
+      hiddenLink.setAttribute("aria-hidden","false");
+
+      // Lainっぽい一瞬のグリッチ
+      document.documentElement.classList.add("glitch-run");
+      spikeNoise(420);
+      setTimeout(()=>document.documentElement.classList.remove("glitch-run"), 420);
+    }
+  });
+
+  // クリックでもザラつきを増幅（気持ちよさ）
+  document.addEventListener("pointerdown", ()=>spikeNoise(180));
+</script>
+
 </body>
 </html>
