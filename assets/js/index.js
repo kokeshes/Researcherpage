@@ -14,10 +14,10 @@ if (localStorage.getItem("layer_unlocked") === "1" && hiddenLink) {
   toast("LAYER: AVAILABLE", 1200);
 }
 
-// ✅ 確実に動く解除方法：Ctrl + O
+// ✅ 確実に動く解除方法：Ctrl + 0
 // （Tabは環境依存が強いので採用しない）
 window.addEventListener("keydown", (e) => {
-  const isCtrlO = e.ctrlKey && (e.key === "o" || e.key === "O");
+  const isCtrlO = e.ctrlKey && (e.key === "0" || e.key === "0");
 
   if (!isCtrlO) return;
 
