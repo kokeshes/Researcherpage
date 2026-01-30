@@ -1,32 +1,41 @@
-window.addEventListener("keydown", (e)=>{
-  const now = performance.now();
+import { toast, startNoise, enableGlitchPulse, registerSW } from "./common.js";
 
-  if(e.key === "Tab"){
-    e.preventDefault(); // ★重要：フォーカス移動を止める
+registerSW();
 
-    if(now - windowStart > 6000){
-      windowStart = now;
-      tabCount = 0;
-      primed = false;
-    }
-    tabCount++;
+const noise = document.getElementById("noise");
+if (noise) startNoise(noise);
+enableGlitchPulse(document);
 
-    if(tabCount === 3) toast("...signal detected");
-    if(tabCount === 6){
-      primed = true;
-      toast("PRIMED — press Enter");
-    }
-  }
+const hiddenLink = document.getElementById("hidden-link");
 
-  if(e.key === "Enter" && primed){
-    e.preventDefault(); // ★Enterによる誤クリック防止
+// すでに解除済みなら表示
+if (localStorage.getItem("layer_unlocked") === "1" && hiddenLink) {
+  hiddenLink.style.display = "block";
+  toast("LAYER: AVAILABLE", 1200);
+}
 
-    localStorage.setItem("layer_unlocked", "1");
-    if(hiddenLink) hiddenLink.style.display = "block";
-    toast("LAYER UNLOCKED");
+// ✅ 確実に動く解除方法：Ctrl + O
+// （Tabは環境依存が強いので採用しない）
+window.addEventListener("keydown", (e) => {
+  const isCtrlO = e.ctrlKey && (e.key === "o" || e.key === "O");
 
-    primed = false;
-    tabCount = 0;
-    windowStart = now;
-  }
+  if (!isCtrlO) return;
+
+  e.preventDefault(); // ブラウザ既定動作を止める
+
+  localStorage.setItem("layer_unlocked", "1");
+  if (hiddenLink) hiddenLink.style.display = "block";
+
+  toast("LAYER UNLOCKED", 1600);
 });
+
+// system clock
+const clock = document.getElementById("sysclock");
+if (clock) {
+  const tick = () => {
+    const d = new Date();
+    clock.textContent = "SYS " + d.toISOString().replace("T", " ").slice(0, 19) + "Z";
+  };
+  tick();
+  setInterval(tick, 1000);
+}
