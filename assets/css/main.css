@@ -217,4 +217,7 @@ a.node{
 .shell{ position: relative; z-index: 10; }
 .panel{ position: relative; z-index: 11; }
 
+/* hidden-link: default hidden, unlocked shows */
+#hidden-link.is-hidden{ display:none; }
+#hidden-link.is-unlocked{ display:block; }
 
