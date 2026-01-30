@@ -13,6 +13,7 @@
   <div class="bg" style="background-image:url('../assets/img/bg-hidden.png')"></div>
   <canvas id="noise"></canvas>
   <div class="scanlines"></div>
+
   <main class="shell">
     <section class="panel" role="region" aria-label="Hidden Layer">
       <header class="topbar">
@@ -22,30 +23,14 @@
         </div>
         <a class="pill" href="../index.html">← INDEX</a>
       </header>
+
       <div class="content">
-        <img
-  src="../assets/img/char-02.png"
-  alt="inner observer"
-  class="lain-character-page"
-/>
+        <div class="small" style="margin-bottom:14px">
+          This page is intentionally written as a <strong>temporary inner-log</strong> (GPT draft).
+        </div>
 
-<div class="small" style="margin-bottom:14px">
-  Unlock condition: Tab x12 on INDEX (within 3 seconds).<br/>
-  This page is intentionally written as a <strong>temporary inner-log</strong> (GPT draft).
-</div>
-<div class="card" style="padding:0; overflow:hidden">
-  <figure class="hidden-figure" aria-hidden="true">
-  <img src="../assets/img/hidden-hood-mosaic.png" alt="" />
-  <div class="hidden-figure__veil"></div>
-</figure>
-  <img
-  src="../assets/img/hidden-hood-mosaic.png"
-  alt="hood"
-  style="display:block; width:min(520px,92%); margin:12px auto; border:2px solid red; opacity:0.9;"
->
-
-
-  <pre id="stream" style="margin:0; padding:16px; white-space:pre-wrap; font-family:var(--mono); line-height:1.7; max-height:52vh; overflow:auto">[BOOT] Deep Layer Protocol: OBSERVE
+        <div class="card" style="padding:0; overflow:hidden">
+          <pre id="stream" style="margin:0; padding:16px; white-space:pre-wrap; font-family:var(--mono); line-height:1.7; max-height:52vh; overflow:auto">[BOOT] Deep Layer Protocol: OBSERVE
 [CHECK] Identity boundary: semi-permeable
 [CHECK] Memory: stratified (public / private / silent)
 
@@ -77,18 +62,20 @@
 
 考えることは果てしなくある。
 そこから逃れることは、私にとっては不誠実だ。
-    
+
 [NOTE] この層は常に暫定的なものである。常に更新される。
 [END]
 </pre>
-</div>
-</div>
+        </div>
+      </div>
+
       <div class="footer">
         <div>© <span id="y"></span> Tatemata Yuuji</div>
         <div class="pill" id="sysclock"></div>
       </div>
     </section>
   </main>
+
   <script type="module" src="./hidden.js"></script>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
