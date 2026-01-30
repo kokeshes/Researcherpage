@@ -87,3 +87,12 @@ a{color:inherit}
   z-index: 2;
   filter: blur(0.3px);
 }
+/* === Lain character (pages) === */
+.lain-character-page{
+  display: block;
+  margin: 16px auto;
+  max-width: 280px;
+  opacity: 0.22;
+  filter: blur(0.4px);
+}
+
