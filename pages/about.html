@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#071014" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <title>About / Interests</title>
+</head>
+<body>
+  <div class="bg" style="background-image:url('/assets/img/bg-about.png')"></div>
+  <canvas id="noise"></canvas>
+  <div class="scanlines"></div>
+  <main class="shell">
+    <section class="panel" role="region" aria-label="About / Interests">
+      <header class="topbar">
+        <div class="brand">
+          <div class="title">SERIAL // RESEARCH LAYER</div>
+          <div class="name" data-glitch="About / Interests">About / Interests</div>
+        </div>
+        <a class="pill" href="/index.html">← INDEX</a>
+      </header>
+      <div class="content">
+<div class="card">
+  <div class="kicker">BIO</div>
+  <div class="label" data-glitch="Tatemata Yuuji">Tatemata Yuuji</div>
+  <div class="small" style="margin-top:12px">
+    哲学（徳認識論・メタ認識論）と心理学（二重過程理論）をまたぎ、
+    <strong>「信頼性の価値」</strong>と<strong>「正当化の外部」</strong>をめぐる問題を扱う。<br/>
+    形式（公理・モデル・操作）と体験（注意・身体・記録）の境界が、研究の主戦場。
+  </div>
+</div>
+<div class="hr"></div>
+<div class="grid">
+  <div class="card">
+    <div class="kicker">INTERESTS</div>
+    <div class="small" style="margin-top:10px">
+      <span class="tag">Virtue Epistemology</span>
+      <span class="tag">Sosa</span>
+      <span class="tag">Dual-Process</span>
+      <span class="tag">Well-trained System 1</span>
+      <span class="tag">Foundations / Infinity</span>
+      <span class="tag">Experimental Philosophy</span>
+      <span class="tag">PWA / Logging</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="kicker">HOBBIES / METHODS</div>
+    <div class="small" style="margin-top:10px">
+      ・タイプライター：思考速度と打鍵の摩擦で概念を固定する。<br/>
+      ・手触りのある記録：ログ、エラーコード、日報、地図。<br/>
+      ・道具：PC/ハードウェア、修理、観測、調整。<br/>
+      ・衣服：デニムの経年変化を“外部化された時間”として扱う。
+    </div>
+  </div>
+</div>
+<div class="hr"></div>
+<div class="card">
+  <div class="kicker">CONTACT</div>
+  <div class="small" style="margin-top:10px">GitHub / X / Email などのリンクをここに追加してください。</div>
+</div>
+</div>
+      <div class="footer">
+        <div>© <span id="y"></span> Tatemata Yuuji</div>
+        <div class="pill" id="sysclock"></div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/pages/about.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    const clock = document.getElementById("sysclock");
+    setInterval(()=>clock.textContent="SYS "+new Date().toISOString().replace("T"," ").slice(0,19)+"Z", 1000);
+  </script>
+</body>
+</html>
